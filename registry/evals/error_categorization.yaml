@@ -1,0 +1,11 @@
+error_categorization:
+  id: error_categorization.dev.v0
+  description: Eval that checks the models ability to classify a job title into a SOC codes issued by the American Bureau of Labor Statistics
+  metrics: [accuracy]
+
+error_categorization.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: /home/azureuser/auto_triage/openai_chat_finetune_visualizer/registry/data/error_categorization/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: json_error_categorization

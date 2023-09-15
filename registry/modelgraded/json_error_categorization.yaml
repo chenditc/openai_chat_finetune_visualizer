@@ -1,0 +1,47 @@
+json_error_categorization:
+  prompt: |-
+    You are comparing a submitted answer to an expert answer on a given question. Here is the data:
+    [BEGIN DATA]
+    ************
+    [Question]: {input}
+    ************
+    [Expert]: {ideal}
+    ************
+    [Submission]: {completion}
+    ************
+    [END DATA]
+
+    Compare the content of the submitted answer with the expert answer. Ignore any differences in style, grammar, or punctuation.
+    Evaluate the answer step by step, then calculate the score for this submission, total score is 10, evaluation starts with score 10 and deduct score if some requirement didn't match:
+     - Evaluate if the submitted answer is a valid json string. If the answer is not a valid json string, it should get "SCORE0" directly.
+     - Evaluate if the thought process extract all the possible root cause of the problem. If the thought process missed some information, subtract score 2 from total score.
+     - If the reference message doesn't exists in the Question, reduce score 3 from total score.
+     - If there are similar known error category exists in Question's input but the submission didn't use it, subtract score 2 from total score.
+     - If the error category doesn't match well the reference error and thought process, subtract score 3 from total score.
+
+    Before you return your score, do a math calculation on these score and return one of these label:
+    "SCORE0", "SCORE2", "SCORE3", "SCORE4", "SCORE5", "SCORE6", "SCORE7", "SCORE8", "SCORE9", "SCORE10"
+  choice_scores:
+    "SCORE0": 0.0
+    "SCORE2": 2.0
+    "SCORE3": 3.0
+    "SCORE4": 4.0
+    "SCORE5": 5.0
+    "SCORE6": 6.0
+    "SCORE7": 7.0
+    "SCORE8": 8.0
+    "SCORE9": 9.0
+    "SCORE10": 10.0
+  choice_strings:
+    - "SCORE0"
+    - "SCORE2"
+    - "SCORE3"
+    - "SCORE4"
+    - "SCORE5"
+    - "SCORE6"
+    - "SCORE7"
+    - "SCORE8"
+    - "SCORE9"
+    - "SCORE10"
+  input_outputs:
+    input: completion
