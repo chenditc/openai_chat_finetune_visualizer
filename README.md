@@ -96,7 +96,14 @@ oaieval gpt-3.5-turbo-16k error_categorization --registry ./registry --max_sampl
 7. Run the eval for different model and save the evaluation result for future comparision.
 
 ## Implement different Lang Chain completion function to use for eval
+### Azure Open AI
+See example in `registry/completion_fns/langchain_llms.yaml`, to use Azure Open AI completion fn, you also need to set the endpoint and apikey as environment variable.
+DO NOT CHECK IN YOUR APIKEY!
 
+```bash
+export OPENAI_API_BASE="https://xxxx.openai.azure.com/"
+export OPENAI_API_KEY=xxxx
+```
 
 # Finetune 
 
