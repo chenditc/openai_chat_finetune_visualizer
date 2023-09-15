@@ -1,10 +1,13 @@
 import gradio as gr
 import json
+import fire
 
 dataset = []
 dirty_count = 0
     
-def save_data(file_path):
+def save_data(file_path, index, user_prompt, assistant_response):
+    current_index = int(index)
+    save_prompt_to_dataset(current_index, user_prompt, assistant_response)
     global dirty_count
     with open(file_path, "w") as f:
         for data in dataset:
@@ -15,6 +18,7 @@ def save_data(file_path):
 def load_data(file_path):
     global dataset
     global dirty_count
+    dataset = []
     with open(file_path, "r") as f:
         for line in f.readlines():
             dataset.append(json.loads(line))
@@ -26,8 +30,26 @@ def next_example(index, user_prompt, assistant_response):
     save_prompt_to_dataset(current_index, user_prompt, assistant_response)
     next_index = int(index) + 1
     return f"Modified Row: {dirty_count}", str(next_index), *get_prompt_in_example(next_index)
+
+def delete_example(index, user_prompt, assistant_response):
+    global dataset
+    global dirty_count
+    current_index = int(index)
+    dataset.pop(current_index)
+    dirty_count += 1
+
+    if current_index == len(dataset):
+        current_index = len(dataset) - 1
+
+    return f"Modified Row: {dirty_count}", str(current_index), *get_prompt_in_example(current_index)
+
+def go_to_example(index):
+    current_index = int(index)
+    return f"Modified Row: {dirty_count}", str(current_index), *get_prompt_in_example(current_index)
     
 def get_prompt_in_example(index):
+    if index >= len(dataset) or len(dataset) == 0:
+        return "Dataset is empty", "Dataset is empty"
     example = dataset[index]
     return example["messages"][-2]["content"], example["messages"][-1]["content"]
 
@@ -42,11 +64,8 @@ def save_prompt_to_dataset(index, user_prompt, assistant_response):
         dirty_count += 1
     dataset[index]["messages"][-2]["content"] = user_prompt
     dataset[index]["messages"][-1]["content"] = assistant_response
-    
-def main():
-    default_file_path = "workdir/gpt_output/error_categorization.jsonl"
-    load_data(default_file_path)
 
+def main(default_file_path = "./finetune_data.jsonl"):
     with gr.Blocks() as demo:
         with gr.Column(variant="panel"):
             with gr.Row(variant="compact"):
@@ -81,8 +100,10 @@ def main():
                     max_lines=1,
                     placeholder="",
                 )
+                go_btn = gr.Button("Go").style(full_width=False)
+                delete_btn = gr.Button("Delete Current").style(full_width=False)
                 next_btn = gr.Button("Next").style(full_width=False)
-        
+
             with gr.Row(variant="compact"):
                 user_prompt = gr.Textbox(
                     value="",
@@ -106,10 +127,12 @@ def main():
                     )
         
             load_btn.click(load_data, file_path_text, [modified_count_text, dataset_index, user_prompt, assistant_response])
-            save_btn.click(save_data, file_path_text, [modified_count_text])
+            save_btn.click(save_data, [file_path_text, dataset_index, user_prompt, assistant_response], [modified_count_text])
+            go_btn.click(go_to_example, [dataset_index], [modified_count_text, dataset_index, user_prompt, assistant_response])
+            delete_btn.click(delete_example, [dataset_index], [modified_count_text, dataset_index, user_prompt, assistant_response])
             next_btn.click(next_example, [dataset_index, user_prompt, assistant_response], [modified_count_text, dataset_index, user_prompt, assistant_response])
             
         demo.launch()
 
 if __name__ == "__main__":
-    main()
+    fire.Fire(main)
