@@ -112,6 +112,13 @@ oaieval azure-gpt-4-32k error_categorization --registry ./registry --max_samples
 
 ### LLAMA2
 
+## Sample using one model and evaluate using another model
+You can use one completion function to sample the response from LLM and then evaluate the result using another model. You will need to pass in two completion function, [the first one will be use as the sampling function](https://github.com/openai/evals/blob/bd3b4d0afa7785f0374c46c32a32dd4c55105c28/evals/eval.py#L78), [the last one will be use as model graded function](https://github.com/openai/evals/blob/bd3b4d0afa7785f0374c46c32a32dd4c55105c28/evals/elsuite/modelgraded/classify.py#L29)
+
+```
+oaieval azure-gpt-35-16k,azure-gpt-4-32k error_categorization --registry ./registry --max_samples 1 --debug
+```
+
 # Finetune 
 
 ## Use Open AI service for finetune 

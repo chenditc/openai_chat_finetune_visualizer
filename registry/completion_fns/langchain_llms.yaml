@@ -8,3 +8,13 @@ azure-gpt-4-32k:
       deployment_name: gpt4-32k
     chat_model_kwargs:
       model_name: gpt-4-32k
+azure-gpt-35-16k:
+  class: evals.completion_fns.langchain_llm:LangChainChatModelCompletionFn
+  args:
+    llm: AzureChatOpenAI
+    llm_kwargs:
+      openai_api_type: "azure"
+      openai_api_version: "2023-05-15"
+      deployment_name: gpt35-16k
+    chat_model_kwargs:
+      model_name: gpt-35-turbo-16k
