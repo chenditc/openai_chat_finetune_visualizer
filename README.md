@@ -63,6 +63,11 @@ This is improved from Open AI jupyter notebook: https://github.com/openai/openai
 If you want to improve your finetune data by manually change some text, you can use the Gradio-based UI:
 `python visualize_finetune_data.py`
 
+You can change both the prompt and the response, and click save to save it back to jsonl file.
+
+![image](https://github.com/chenditc/openai_chat_gpt_finetune_tools/assets/3244845/1dde2a9f-4386-4ef2-83a5-bbc7df9ad54b)
+
+
 ## Convert the finetune data to openai eval format
 If you plan to use https://github.com/openai/evals/tree/main to evaluate your finetune result, you can convert the finetune data to eval format using:
 `python convert_finetune_data_to_eval_format.py --finetune_data_path ./finetune_data.jsonl --eval_file_path eval.jsonl`
