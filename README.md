@@ -105,6 +105,13 @@ export OPENAI_API_BASE="https://xxxx.openai.azure.com/"
 export OPENAI_API_KEY=xxxx
 ```
 
+To use Azure open ai model to evaluate, change the completion function to the new name:
+```
+oaieval azure-gpt-4-32k error_categorization --registry ./registry --max_samples 1 --debug
+```
+
+### LLAMA2
+
 # Finetune 
 
 ## Use Open AI service for finetune 
