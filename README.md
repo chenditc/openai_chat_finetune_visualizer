@@ -12,7 +12,7 @@ The simplest way to collect data for finetune is to use GPT4 as our labeler, use
 To record the messages and save it to finetune_data.jsonl, format see: https://platform.openai.com/docs/guides/fine-tuning/example-format
 
 You can use this wrapper function to call openai:
-```
+```python
 def record_gpt_input_output(input_messages, response, prompt_type, output_dir="gpt_output"):
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     output_file = Path(output_dir) / f"{prompt_type}.jsonl"
@@ -66,3 +66,35 @@ If you want to improve your finetune data by manually change some text, you can 
 ## Convert the finetune data to openai eval format
 If you plan to use https://github.com/openai/evals/tree/main to evaluate your finetune result, you can convert the finetune data to eval format using:
 `python convert_finetune_data_to_eval_format.py --finetune_data_path ./finetune_data.jsonl --eval_file_path eval.jsonl`
+
+## Use OpenAI eval to evaluate the data for different format
+1. Install Open AI evals follow https://github.com/openai/evals/blob/main/README.md#Setup
+2. prepare local registry:
+```bash
+mkdir registry
+mkdir registry/evals
+mkdir registry/data
+mkdir registry/modelgraded/
+```
+3. Put your data under `registry/data`
+```bash
+# For example, my use case is error categorization.
+mkdir registry/data/error_categorization
+mv eval.jsonl registry/data/error_categorization/samples.jsonl
+```
+4. Put your model graded evaluation config in `registry/modelgraded`
+5. Put your eval config config in `registry/evals`
+6. Run the eval for one example to rule out any config issue:
+```bash
+oaieval gpt-3.5-turbo-16k error_categorization --registry ./registry --max_samples 1 --debug
+```
+7. Run the eval for different model and save the evaluation result for future comparision.
+
+## Implement different Lang Chain completion function to use for eval
+
+
+# Finetune 
+
+## Use Open AI service for finetune 
+
+## Eval finetuned model
