@@ -119,8 +119,133 @@ You can use one completion function to sample the response from LLM and then eva
 oaieval azure-gpt-35-16k,azure-gpt-4-32k error_categorization --registry ./registry --max_samples 1 --debug
 ```
 
+## Eval Result
+Use azure gpt4 0613 for evalution. Here are results:
+
+1. azure gpt 3.5 16k 0613
+[2023-09-16 12:29:03,763] [oaieval.py:239] Final report:
+[2023-09-16 12:29:03,764] [oaieval.py:241] counts/SCORE8: 16
+[2023-09-16 12:29:03,764] [oaieval.py:241] counts/SCORE10: 63
+[2023-09-16 12:29:03,764] [oaieval.py:241] counts/SCORE0: 29
+[2023-09-16 12:29:03,764] [oaieval.py:241] counts/SCORE2: 10
+[2023-09-16 12:29:03,764] [oaieval.py:241] counts/SCORE3: 22
+[2023-09-16 12:29:03,764] [oaieval.py:241] counts/SCORE5: 20
+[2023-09-16 12:29:03,764] [oaieval.py:241] counts/SCORE7: 6
+[2023-09-16 12:29:03,764] [oaieval.py:241] score: 5.9397590361445785
+
+2. azure gpt 4 32k 0613
+[2023-09-16 12:26:34,197] [oaieval.py:239] Final report:
+[2023-09-16 12:26:34,198] [oaieval.py:241] counts/SCORE10: 79
+[2023-09-16 12:26:34,199] [oaieval.py:241] counts/SCORE7: 5
+[2023-09-16 12:26:34,200] [oaieval.py:241] counts/SCORE0: 45
+[2023-09-16 12:26:34,201] [oaieval.py:241] counts/SCORE8: 10
+[2023-09-16 12:26:34,201] [oaieval.py:241] counts/SCORE2: 3
+[2023-09-16 12:26:34,201] [oaieval.py:241] counts/SCORE5: 21
+[2023-09-16 12:26:34,201] [oaieval.py:241] counts/__invalid__: 1
+[2023-09-16 12:26:34,201] [oaieval.py:241] counts/SCORE6: 1
+[2023-09-16 12:26:34,201] [oaieval.py:241] counts/SCORE9: 1
+[2023-09-16 12:26:34,201] [oaieval.py:241] score: 6.210843373493976
+
+3. azure gpt 4 32k 0313
+[2023-09-16 12:22:42,294] [oaieval.py:239] Final report:
+[2023-09-16 12:22:42,296] [oaieval.py:241] counts/SCORE10: 137
+[2023-09-16 12:22:42,296] [oaieval.py:241] counts/SCORE8: 7
+[2023-09-16 12:22:42,296] [oaieval.py:241] counts/SCORE0: 1
+[2023-09-16 12:22:42,296] [oaieval.py:241] counts/SCORE5: 11
+[2023-09-16 12:22:42,296] [oaieval.py:241] counts/SCORE7: 3
+[2023-09-16 12:22:42,296] [oaieval.py:241] counts/SCORE3: 5
+[2023-09-16 12:22:42,296] [oaieval.py:241] counts/__invalid__: 2
+[2023-09-16 12:22:42,296] [oaieval.py:241] score: 9.13855421686747
+
+4. azure gpt 3.5 4k 0301
+[2023-09-16 15:05:54,148] [oaieval.py:239] Final report:
+[2023-09-16 15:05:54,151] [oaieval.py:241] counts/SCORE10: 72
+[2023-09-16 15:05:54,153] [oaieval.py:241] counts/SCORE5: 29
+[2023-09-16 15:05:54,153] [oaieval.py:241] counts/SCORE7: 23
+[2023-09-16 15:05:54,153] [oaieval.py:241] counts/SCORE8: 7
+[2023-09-16 15:05:54,153] [oaieval.py:241] counts/SCORE2: 13
+[2023-09-16 15:05:54,153] [oaieval.py:241] counts/SCORE3: 9
+[2023-09-16 15:05:54,153] [oaieval.py:241] counts/SCORE4: 1
+[2023-09-16 15:05:54,153] [oaieval.py:241] counts/SCORE0: 12
+[2023-09-16 15:05:54,153] [oaieval.py:241] score: 6.86144578313253
+
+5. azure gpt 4 8k 0613
+[2023-09-16 15:09:56,094] [oaieval.py:239] Final report:
+[2023-09-16 15:09:56,094] [oaieval.py:241] counts/SCORE0: 48
+[2023-09-16 15:09:56,094] [oaieval.py:241] counts/SCORE10: 87
+[2023-09-16 15:09:56,094] [oaieval.py:241] counts/SCORE6: 3
+[2023-09-16 15:09:56,094] [oaieval.py:241] counts/SCORE5: 17
+[2023-09-16 15:09:56,094] [oaieval.py:241] counts/SCORE8: 9
+[2023-09-16 15:09:56,094] [oaieval.py:241] counts/SCORE7: 1
+[2023-09-16 15:09:56,094] [oaieval.py:241] counts/SCORE9: 1
+[2023-09-16 15:09:56,094] [oaieval.py:241] score: 6.391566265060241
+
+6. open ai gpt 3.5 16k latest
+[2023-09-16 15:18:29,678] [oaieval.py:239] Final report:
+[2023-09-16 15:18:29,678] [oaieval.py:241] counts/SCORE10: 66
+[2023-09-16 15:18:29,679] [oaieval.py:241] counts/SCORE0: 24
+[2023-09-16 15:18:29,680] [oaieval.py:241] counts/SCORE3: 21
+[2023-09-16 15:18:29,680] [oaieval.py:241] counts/SCORE5: 18
+[2023-09-16 15:18:29,680] [oaieval.py:241] counts/SCORE8: 13
+[2023-09-16 15:18:29,681] [oaieval.py:241] counts/SCORE2: 13
+[2023-09-16 15:18:29,681] [oaieval.py:241] counts/SCORE7: 10
+[2023-09-16 15:18:29,681] [oaieval.py:241] counts/SCORE4: 1
+[2023-09-16 15:18:29,681] [oaieval.py:241] score: 6.126506024096385
+
 # Finetune 
 
 ## Use Open AI service for finetune 
+Submit the finetune file and create finetune job
+```bash
+$ python submit_finetune_job.py ./finetune_data.jsonl
+Uploading file ./finetune_data.jsonl
+Fine tune file info: {
+  "object": "file",
+  "id": "file-F016DlAvgy9OeWSW61GXnnOr",
+  "purpose": "fine-tune",
+  "filename": "file",
+  "bytes": 1177668,
+  "created_at": 1694924971,
+  "status": "uploaded",
+  "status_details": null
+}
+Waiting for file to be processed
+{
+  "object": "file",
+  "id": "file-xxx",
+  "purpose": "fine-tune",
+  "filename": "file",
+  "bytes": 1177668,
+  "created_at": 1694924971,
+  "status": "uploaded",
+  "status_details": null
+}
+```
+
+Wait for finetune job to complete:
+```bash
+python waiting_finetune_job.py
+Trained 911 seconds
+ {
+  "object": "fine_tuning.job",
+  "id": "ftjob-xxx",
+  "model": "gpt-3.5-turbo-0613",
+  "created_at": 1694923368,
+  "finished_at": 1694924268,
+  "fine_tuned_model": "ft:gpt-3.5-turbo-0613:personal::7zdWAcr9",
+  "organization_id": "org-om8aNZzKGGHU1ILO6osvYUQY",
+  "result_files": [
+    "file-HfNO3qGePlf0XVoTjtzaSOZa"
+  ],
+  "status": "succeeded",
+  "validation_file": null,
+  "training_file": "file-ELIMV4SWH5kGkItNXSnJv9xX",
+  "hyperparameters": {
+    "n_epochs": 3
+  },
+  "trained_tokens": 970065,
+  "error": null
+}
+```
 
 ## Eval finetuned model
